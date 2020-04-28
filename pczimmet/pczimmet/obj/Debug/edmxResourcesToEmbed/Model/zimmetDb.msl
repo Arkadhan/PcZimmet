@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="pcZimmetModelStoreContainer" CdmEntityContainer="pcZimmetEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="pcZimmetModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAtikPc">
+      <EntityTypeMapping TypeName="pcZimmetModel.tblAtikPc">
+        <MappingFragment StoreEntitySet="tblAtikPc">
+          <ScalarProperty Name="atikID" ColumnName="atikID" />
+          <ScalarProperty Name="atikAdi" ColumnName="atikAdi" />
+          <ScalarProperty Name="atikAdedi" ColumnName="atikAdedi" />
+          <ScalarProperty Name="atikMarka" ColumnName="atikMarka" />
+          <ScalarProperty Name="atikModel" ColumnName="atikModel" />
+          <ScalarProperty Name="atikOzellik" ColumnName="atikOzellik" />
+          <ScalarProperty Name="satinalmaID" ColumnName="satinalmaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBolum">
+      <EntityTypeMapping TypeName="pcZimmetModel.tblBolum">
+        <MappingFragment StoreEntitySet="tblBolum">
+          <ScalarProperty Name="bolumID" ColumnName="bolumID" />
+          <ScalarProperty Name="bolumAdi" ColumnName="bolumAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblKullanici">
+      <EntityTypeMapping TypeName="pcZimmetModel.tblKullanici">
+        <MappingFragment StoreEntitySet="tblKullanici">
+          <ScalarProperty Name="kullaniciID" ColumnName="kullaniciID" />
+          <ScalarProperty Name="kullaniciAdi" ColumnName="kullaniciAdi" />
+          <ScalarProperty Name="kullaniciSifre" ColumnName="kullaniciSifre" />
+          <ScalarProperty Name="kullaniciYetki" ColumnName="kullaniciYetki" />
+          <ScalarProperty Name="bolumID" ColumnName="bolumID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPcStok">
+      <EntityTypeMapping TypeName="pcZimmetModel.tblPcStok">
+        <MappingFragment StoreEntitySet="tblPcStok">
+          <ScalarProperty Name="satinalmaID" ColumnName="satinalmaID" />
+          <ScalarProperty Name="satinalmaParcaAdi" ColumnName="satinalmaParcaAdi" />
+          <ScalarProperty Name="satinalmaTarihi" ColumnName="satinalmaTarihi" />
+          <ScalarProperty Name="satinalmaFiyati" ColumnName="satinalmaFiyati" />
+          <ScalarProperty Name="satinalmaMarka" ColumnName="satinalmaMarka" />
+          <ScalarProperty Name="satinalmaModel" ColumnName="satinalmaModel" />
+          <ScalarProperty Name="satinalmaOzellik" ColumnName="satinalmaOzellik" />
+          <ScalarProperty Name="satinalmaAdet" ColumnName="satinalmaAdet" />
+          <ScalarProperty Name="satinalmaTuru" ColumnName="satinalmaTuru" />
+          <ScalarProperty Name="tedarikciID" ColumnName="tedarikciID" />
+          <ScalarProperty Name="zimmetDurumu" ColumnName="zimmetDurumu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPersonel">
+      <EntityTypeMapping TypeName="pcZimmetModel.tblPersonel">
+        <MappingFragment StoreEntitySet="tblPersonel">
+          <ScalarProperty Name="personelID" ColumnName="personelID" />
+          <ScalarProperty Name="personelAdi" ColumnName="personelAdi" />
+          <ScalarProperty Name="personelSoyadi" ColumnName="personelSoyadi" />
+          <ScalarProperty Name="personelTel" ColumnName="personelTel" />
+          <ScalarProperty Name="personelDurum" ColumnName="personelDurum" />
+          <ScalarProperty Name="bolumID" ColumnName="bolumID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTedarikci">
+      <EntityTypeMapping TypeName="pcZimmetModel.tblTedarikci">
+        <MappingFragment StoreEntitySet="tblTedarikci">
+          <ScalarProperty Name="tedarikciID" ColumnName="tedarikciID" />
+          <ScalarProperty Name="tedarikciAdi" ColumnName="tedarikciAdi" />
+          <ScalarProperty Name="tedarikciAdres" ColumnName="tedarikciAdres" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblZimmet">
+      <EntityTypeMapping TypeName="pcZimmetModel.tblZimmet">
+        <MappingFragment StoreEntitySet="tblZimmet">
+          <ScalarProperty Name="zimmetAdet" ColumnName="zimmetAdet" />
+          <ScalarProperty Name="zimmetID" ColumnName="zimmetID" />
+          <ScalarProperty Name="personelID" ColumnName="personelID" />
+          <ScalarProperty Name="satinalmaID" ColumnName="satinalmaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

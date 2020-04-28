@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="pcZimmetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tblAtikPc">
+    <Key>
+      <PropertyRef Name="atikID" />
+    </Key>
+    <Property Name="atikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="atikAdi" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="atikAdedi" Type="int" Nullable="false" />
+    <Property Name="atikMarka" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="atikModel" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="atikOzellik" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="satinalmaID" Type="int" />
+  </EntityType>
+  <EntityType Name="tblBolum">
+    <Key>
+      <PropertyRef Name="bolumID" />
+    </Key>
+    <Property Name="bolumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bolumAdi" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblKullanici">
+    <Key>
+      <PropertyRef Name="kullaniciID" />
+    </Key>
+    <Property Name="kullaniciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kullaniciAdi" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="kullaniciSifre" Type="char" MaxLength="8" Nullable="false" />
+    <Property Name="kullaniciYetki" Type="tinyint" Nullable="false" />
+    <Property Name="bolumID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblPcStok">
+    <Key>
+      <PropertyRef Name="satinalmaID" />
+    </Key>
+    <Property Name="satinalmaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="satinalmaParcaAdi" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="satinalmaTarihi" Type="date" Nullable="false" />
+    <Property Name="satinalmaFiyati" Type="money" Nullable="false" />
+    <Property Name="satinalmaMarka" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="satinalmaModel" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="satinalmaOzellik" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="satinalmaAdet" Type="tinyint" Nullable="false" />
+    <Property Name="satinalmaTuru" Type="int" Nullable="false" />
+    <Property Name="tedarikciID" Type="int" Nullable="false" />
+    <Property Name="zimmetDurumu" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblPersonel">
+    <Key>
+      <PropertyRef Name="personelID" />
+    </Key>
+    <Property Name="personelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="personelAdi" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="personelSoyadi" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="personelTel" Type="int" Nullable="false" />
+    <Property Name="personelDurum" Type="bit" Nullable="false" />
+    <Property Name="bolumID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblTedarikci">
+    <Key>
+      <PropertyRef Name="tedarikciID" />
+    </Key>
+    <Property Name="tedarikciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tedarikciAdi" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="tedarikciAdres" Type="nchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblZimmet">
+    <Key>
+      <PropertyRef Name="zimmetID" />
+    </Key>
+    <Property Name="zimmetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="personelID" Type="int" Nullable="false" />
+    <Property Name="satinalmaID" Type="int" Nullable="false" />
+    <Property Name="zimmetAdet" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tblAtikPc_tblPcStok">
+    <End Role="tblPcStok" Type="Self.tblPcStok" Multiplicity="0..1" />
+    <End Role="tblAtikPc" Type="Self.tblAtikPc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPcStok">
+        <PropertyRef Name="satinalmaID" />
+      </Principal>
+      <Dependent Role="tblAtikPc">
+        <PropertyRef Name="satinalmaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblKullanici_tblBolum">
+    <End Role="tblBolum" Type="Self.tblBolum" Multiplicity="1" />
+    <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBolum">
+        <PropertyRef Name="bolumID" />
+      </Principal>
+      <Dependent Role="tblKullanici">
+        <PropertyRef Name="bolumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPcStok_tblTedarikci">
+    <End Role="tblTedarikci" Type="Self.tblTedarikci" Multiplicity="1" />
+    <End Role="tblPcStok" Type="Self.tblPcStok" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTedarikci">
+        <PropertyRef Name="tedarikciID" />
+      </Principal>
+      <Dependent Role="tblPcStok">
+        <PropertyRef Name="tedarikciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPersonel_tblBolum">
+    <End Role="tblBolum" Type="Self.tblBolum" Multiplicity="1" />
+    <End Role="tblPersonel" Type="Self.tblPersonel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBolum">
+        <PropertyRef Name="bolumID" />
+      </Principal>
+      <Dependent Role="tblPersonel">
+        <PropertyRef Name="bolumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblZimmet_tblPcStok">
+    <End Role="tblPcStok" Type="Self.tblPcStok" Multiplicity="1" />
+    <End Role="tblZimmet" Type="Self.tblZimmet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPcStok">
+        <PropertyRef Name="satinalmaID" />
+      </Principal>
+      <Dependent Role="tblZimmet">
+        <PropertyRef Name="satinalmaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblZimmet_tblPersonel">
+    <End Role="tblPersonel" Type="Self.tblPersonel" Multiplicity="1" />
+    <End Role="tblZimmet" Type="Self.tblZimmet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPersonel">
+        <PropertyRef Name="personelID" />
+      </Principal>
+      <Dependent Role="tblZimmet">
+        <PropertyRef Name="personelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="pcZimmetModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblAtikPc" EntityType="Self.tblAtikPc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblBolum" EntityType="Self.tblBolum" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblKullanici" EntityType="Self.tblKullanici" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPcStok" EntityType="Self.tblPcStok" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPersonel" EntityType="Self.tblPersonel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTedarikci" EntityType="Self.tblTedarikci" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblZimmet" EntityType="Self.tblZimmet" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tblAtikPc_tblPcStok" Association="Self.FK_tblAtikPc_tblPcStok">
+      <End Role="tblPcStok" EntitySet="tblPcStok" />
+      <End Role="tblAtikPc" EntitySet="tblAtikPc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblKullanici_tblBolum" Association="Self.FK_tblKullanici_tblBolum">
+      <End Role="tblBolum" EntitySet="tblBolum" />
+      <End Role="tblKullanici" EntitySet="tblKullanici" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPcStok_tblTedarikci" Association="Self.FK_tblPcStok_tblTedarikci">
+      <End Role="tblTedarikci" EntitySet="tblTedarikci" />
+      <End Role="tblPcStok" EntitySet="tblPcStok" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPersonel_tblBolum" Association="Self.FK_tblPersonel_tblBolum">
+      <End Role="tblBolum" EntitySet="tblBolum" />
+      <End Role="tblPersonel" EntitySet="tblPersonel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblZimmet_tblPcStok" Association="Self.FK_tblZimmet_tblPcStok">
+      <End Role="tblPcStok" EntitySet="tblPcStok" />
+      <End Role="tblZimmet" EntitySet="tblZimmet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblZimmet_tblPersonel" Association="Self.FK_tblZimmet_tblPersonel">
+      <End Role="tblPersonel" EntitySet="tblPersonel" />
+      <End Role="tblZimmet" EntitySet="tblZimmet" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
